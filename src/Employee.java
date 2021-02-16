@@ -3,9 +3,15 @@
  @author Sailokesh Mondi, Tanay Somisetty
  */
 
-public class Employee {
+public abstract class Employee {
+    private Profile profile;
 
-    public void calculatePayment(){
 
+
+    public abstract void calculatePayment();
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }
