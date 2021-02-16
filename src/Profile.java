@@ -9,6 +9,12 @@ public class Profile {
     private Date dateHired;
 
 
+    public Profile(String name, String department, Date dateHired){
+        this.name = name;
+        this.department = department;
+        this.dateHired = dateHired;
+    }
+
     /**
      Gives a string representation for a Profile object.
      @param 'none'
@@ -41,5 +47,56 @@ public class Profile {
         else {
             return false;
         }
+    }
+
+    /**
+     Accessor method that gets the name instance variable for this class.
+     @param 'none'
+     @return A String object for the name
+     */
+    public String getName(){
+        return this.name;
+    }
+
+    /**
+     Modifier method that sets the name instance variable for this class.
+     @param 'New' String object wish to be set as the name
+     */
+    public void setName(String name){
+        this.name = name;
+    }
+
+    /**
+     Accessor method that gets the department instance variable for this class.
+     @param 'none'
+     @return A String object for the department
+     */
+    public String getDepartment(){
+        return this.department;
+    }
+
+    /**
+     Modifier method that sets the department instance variable for this class.
+     @param 'New' String object wish to be set as the department
+     */
+    public void setDepartment(String department){
+        this.department = department;
+    }
+
+    /**
+     Accessor method that gets the dateHired instance variable for this class.
+     @param 'none'
+     @return A String object for the dateHired
+     */
+    public Date getDateHired(){
+        return this.dateHired;
+    }
+
+    /**
+     Modifier method that sets the dateHired instance variable for this class.
+     @param 'New' String object wish to be set as the dateHired
+     */
+    public void setProfile(Date dateHired){
+        this.dateHired = dateHired;
     }
 }
