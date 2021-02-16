@@ -1,3 +1,6 @@
+import java.awt.font.FontRenderContext;
+import java.util.Calendar;
+
 /**
  An array-based container class that implements employee database.
  Stores a list of employees, which may include instances of full-time,part-time,
@@ -9,6 +12,8 @@ public class Company {
     private Employee[] emplist;
     private int numEmployee;
     final static int INITIAL_CAPACITY = 4;
+    final static int SORT_BY_DATE = 1;
+    final static int SORT_BY_DEPARTMENT = 2;
 
     public Company() {
         this.emplist = new Employee[INITIAL_CAPACITY];
@@ -16,24 +21,32 @@ public class Company {
     }
 
     private int find(Employee employee) {
-        int number = Integer.valueOf(employee.);
-        for (int i = 0; i < this.emplist.length && emplist[i]!=null; i++) {
-            Employee currentEmployee =
-        }
 
+        int found = -1;
+        for (int i = 0; i < this.emplist.length && emplist[i]!=null; i++) {
+            Employee currentEmployee = emplist[i];
+            if(employee.equals(currentEmployee)) {
+                found = 1;
+                break;
+            }
+        }
+    return found;
     }
 
     private void grow() {
 
         int currCapacity = this.emplist.length;
-        Employee[] newEmployees = new Employee[currCapacity+=4];
+        Employee[] newEmployees = new Employee[currCapacity + 4];
 
         for (int i = 0; i < currCapacity; i++) {
-            Employee currentEmployee = this.emplist[i];
-            Employee newEmployee =
+            newEmployees[i] = emplist[i];
+        }
 
-                }
-            }
+        emplist = newEmployees;
+
+
+    }
+
 
 
 
@@ -86,6 +99,35 @@ public class Company {
      */
     public void print() {
 
+        for (int i = 0; i< numEmployee; i++) {
+            System.out.println(emplist[i].toString());
+        }
+    }
+    private void selectionSort(final int sortBy) {
+            if (sortBy ==SORT_BY_DATE) {
+                for (int i =0; i < numEmployee-1; i++) {
+                    for (int j = i+1;j < numEmployee; j++) {
+                        Date dt1 = emplist[i].getProfile().getDateHired();
+                        Calendar cal1 = Calendar.getInstance();
+                        cal1.set(Calendar.DATE, dt1.getDay());
+                        cal1.set(Calendar.MONTH,dt1.getMonth());
+                        cal1.set(Calendar.YEAR, dt1.getYear());
+
+                        Date dt2 = emplist[j].getProfile().getDateHired();
+                        Calendar cal2 = Calendar.getInstance();
+                        cal2.set(Calendar.DATE, dt2.getDay());
+                        cal2.set(Calendar.MONTH,dt2.getMonth());
+                        cal2.set(Calendar.YEAR, dt2.getYear());
+
+                        if (cal1.getTime().compareTo(cal2.getTime()) > 0) {
+                            Employee temp_employee = emplist[i];
+                            emplist[i] = emplist[j];
+                            emplist[j] = temp_employee;
+                        }
+                    }
+
+                }
+            }
     }
 
     /**
@@ -102,6 +144,16 @@ public class Company {
      */
     public void printByDate() {
 
+        if (numEmployee == 0) {
+            System.out.println("Employee database is empty.");
+        } else {
+            selectionSort(SORT_BY_DATE);
+            System.out.println("Printing earning statements by date hired--");
+            for (int i = 0; i < numEmployee; i++) {
+                System.out.println(emplist[i].toString());
+            }
+            System.out.println("**End of list");
+        }
     }
 
 }
