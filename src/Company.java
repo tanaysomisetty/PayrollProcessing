@@ -48,28 +48,20 @@ public class Company {
     }
 
 
-
-
-
-
-
-
-
-
     /**
-     * Method to check the profile before adding.
-     * @param employee
-     * @return
+     Method to check the profile before adding.
+     @param employee
+     @return
      */
     public boolean add(Employee employee) {
-        Profile
+
 
     }
 
     /**
-     * Method to maintain the original sequence.
-     * @param employee
-     * @return
+     Method to maintain the original sequence.
+     @param employee
+     @return
      */
     public boolean remove(Employee employee) {
         int removeIndex = find(employee);
@@ -98,25 +90,25 @@ public class Company {
 
 
     /**
-     * Method to set working hours for a part-time employee.
-     * @param employee
-     * @return
+     Method to set working hours for a part-time employee.
+     @param employee
+     @return
      */
     public boolean setHours(Employee employee) {
 
     }
 
     /**
-     * Method to process payments for all employees.
-     * @param 'none'
+     Method to process payments for all employees.
+     @param 'none'
      */
     public void processPayments() {
 
     }
 
     /**
-     * Method to print earning statements for all employees.
-     * @param 'none'
+     Method to print earning statements for all employees.
+     @param 'none'
      */
     public void print() {
 
@@ -124,6 +116,11 @@ public class Company {
             System.out.println(emplist[i].toString());
         }
     }
+
+    /**
+     Helper method to implement selection sort for two different purposes: sort by date hired and sort by department
+     @param 'sorting' type/method
+     */
     private void selectionSort(final int sortBy) {
             if (sortBy ==SORT_BY_DATE) {
                 for (int i =0; i < numEmployee-1; i++) {
@@ -148,7 +145,15 @@ public class Company {
                     }
 
                 }
-            }
+            } else if (sortBy == SORT_BY_DEPARTMENT) {
+                for(int i = 0; i < numEmployee-1; i++) {
+                    for (int j = i+1; j < numEmployee; j++) {
+                        get
+                    }
+                }
+
+
+        }
     }
 
     /**
@@ -156,7 +161,16 @@ public class Company {
      * @param 'none'
      */
     public void printByDepartment() {
-
+        if (numEmployee == 0) {
+            System.out.println("Employee database is empty.");
+        } else {
+            selectionSort(SORT_BY_DEPARTMENT);
+            System.out.println("--Printing earning statements by department--");
+            for(int i = 0; i < numEmployee; i++) {
+                System.out.println(emplist[i].toString());
+            }
+            System.out.println("**End of list");
+        }
     }
 
     /**
@@ -169,7 +183,7 @@ public class Company {
             System.out.println("Employee database is empty.");
         } else {
             selectionSort(SORT_BY_DATE);
-            System.out.println("Printing earning statements by date hired--");
+            System.out.println("--Printing earning statements by date hired--");
             for (int i = 0; i < numEmployee; i++) {
                 System.out.println(emplist[i].toString());
             }

@@ -94,20 +94,20 @@ public class Date implements Comparable<Date> {
      */
     public boolean isValid() {
 
-        int longMonth = 31;
-        int shortMonth = 30;
-        int longFeb = 29;
-        int shortFeb = 28;
+        final int LONG_MONTH = 31;
+        final int SHORT_MONTH = 30;
+        final int LONG_FEB = 29;
+        final int SHORT_FEB = 28;
 
 
         Date todayDate = new Date();
 
-        int currentDay = todayDate.day;
-        int currentMonth = todayDate.month;
+        final int CURRENT_DAY = todayDate.day;
+        final int CURRENT_MONTH = todayDate.month;
 
         // year Validation
         if (year < YearThresholdOne || year >= YearThresholdTwo) {
-            if((year == YearThresholdTwo) && (month <= currentMonth && month >= 1) && (day <= currentDay && day >= 1)) {
+            if((year == YearThresholdTwo) && (month <= CURRENT_MONTH && month >= 1) && (day <= CURRENT_DAY && day >= 1)) {
                 return true;
             }
             return false;
@@ -116,21 +116,21 @@ public class Date implements Comparable<Date> {
 
         // Day Validation
         if ((month == Calendar.JANUARY + 1 || month == Calendar.MARCH + 1 || month == Calendar.MAY + 1 || month == Calendar.JULY + 1
-                || month == Calendar.AUGUST + 1 || month == Calendar.OCTOBER + 1 || month == Calendar.DECEMBER + 1) && day > longMonth) {
+                || month == Calendar.AUGUST + 1 || month == Calendar.OCTOBER + 1 || month == Calendar.DECEMBER + 1) && day > LONG_MONTH) {
             return false;
         }
 
         if ((month == Calendar.APRIL + 1 || month == Calendar.JUNE + 1 || month == Calendar.SEPTEMBER + 1
-                || month == Calendar.NOVEMBER + 1) && day > shortMonth) {
+                || month == Calendar.NOVEMBER + 1) && day > SHORT_MONTH) {
             return false;
         }
 
-        if (month == Calendar.FEBRUARY + 1 && isLeapYear() && day > longFeb) {
+        if (month == Calendar.FEBRUARY + 1 && isLeapYear() && day > LONG_FEB) {
             return false;
 
         }
 
-        if (month == Calendar.FEBRUARY + 1 && !isLeapYear() && day > shortFeb) {
+        if (month == Calendar.FEBRUARY + 1 && !isLeapYear() && day > SHORT_FEB) {
 
             return false;
 

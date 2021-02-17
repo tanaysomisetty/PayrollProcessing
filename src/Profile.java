@@ -18,7 +18,7 @@ public class Profile {
     /**
      Gives a string representation for a Profile object.
      @param 'none'
-     @return a string in the format of "lastname,firtname::DEPT::MM/DD/YYYY
+     @return a string in the format of "lastname,firtname::DEPT::MM/DD/YYYY"
      */
     @Override
     public String toString() {

@@ -4,9 +4,22 @@
  */
 
 public class Management extends Fulltime{
+    private double extraComp;
+
 
     @Override
     public void calculatePayment() {
 
     }
+
+    @Override
+    public String toString(){
+        return super.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        return super.equals(obj);
+    }
+
 }
