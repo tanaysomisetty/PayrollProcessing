@@ -62,7 +62,7 @@ public class Company {
      * @return
      */
     public boolean add(Employee employee) {
-
+        Profile
 
     }
 
@@ -72,9 +72,30 @@ public class Company {
      * @return
      */
     public boolean remove(Employee employee) {
-
+        int removeIndex = find(employee);
+        if (removeIndex>=0) {
+            emplist[removeIndex] = null;
+            shift(removeIndex + 1);
+            return true;
+        } else {
+            return false;
+        }
 
     }
+
+    /**
+     Helper method to shift all items of an array begin at index start to the end of the array back by 1
+     @param 'starting' index
+     */
+    private void shift(int start) {
+
+        for (int i = start; i < emplist.length; i++) {
+            emplist[i - 1] = emplist[i];
+        }
+        emplist[emplist.length - 1] = null;
+
+    }
+
 
     /**
      * Method to set working hours for a part-time employee.
