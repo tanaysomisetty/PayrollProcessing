@@ -24,11 +24,13 @@ public class Company {
     private int find(Employee employee) {
 
         int found = -1;
-        for (int i = 0; i < this.emplist.length && emplist[i] != null; i++) {
-            Employee currentEmployee = emplist[i];
-            if (employee.equals(currentEmployee)) {
-                found = 1;
-                break;
+
+        if (emplist != null) {
+            for (final Employee currentEmployee : emplist) {
+                if (employee.equals(currentEmployee)) {
+                    found = 1;
+                    break;
+                }
             }
         }
         return found;
@@ -57,8 +59,15 @@ public class Company {
      */
     public boolean add(Employee employee) {
 
+        if (find(employee) < 0) {
+            // If the array is fully occupied, call grow
+            if (numEmployee == emplist.length) {
+                grow();
+            }
+            emplist[numEmployee] = employee;
+            return true;
+        }
         return false;
-
     }
 
     /**
@@ -105,7 +114,7 @@ public class Company {
         boolean isPartTime = false;
 
 
-        if(employee instanceof Parttime) {
+        if (employee instanceof Parttime) {
             isPartTime = true;
         }
 
@@ -176,16 +185,16 @@ public class Company {
 
         for (final Employee employee : emplist) {
 
-            if(depMap.get(employee.getProfile().getDepartment()) == null) {
+            if (depMap.get(employee.getProfile().getDepartment()) == null) {
                 final List<Employee> employees = new ArrayList<>();
                 depMap.put(employee.getProfile().getDepartment(), employees);
             }
             depMap.get(employee.getProfile().getDepartment()).add(employee);
         }
 
-        for(String department: depMap.keySet()) {
-            for(final Employee employee:depMap.get(department)) {
-                System.out.println("department:"+department+", payment:"+employee.getPayment());
+        for (String department : depMap.keySet()) {
+            for (final Employee employee : depMap.get(department)) {
+                System.out.println("department:" + department + ", payment:" + employee.getPayment());
             }
         }
 
