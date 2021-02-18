@@ -1,11 +1,12 @@
 import java.awt.font.FontRenderContext;
-import java.util.Calendar;
+import java.util.*;
 
 /**
- An array-based container class that implements employee database.
- Stores a list of employees, which may include instances of full-time,part-time,
- and management.
- @author Sailokesh Mondi, Tanay Somisetty
+ * An array-based container class that implements employee database.
+ * Stores a list of employees, which may include instances of full-time,part-time,
+ * and management.
+ *
+ * @author Sailokesh Mondi, Tanay Somisetty
  */
 
 public class Company {
@@ -23,14 +24,14 @@ public class Company {
     private int find(Employee employee) {
 
         int found = -1;
-        for (int i = 0; i < this.emplist.length && emplist[i]!=null; i++) {
+        for (int i = 0; i < this.emplist.length && emplist[i] != null; i++) {
             Employee currentEmployee = emplist[i];
-            if(employee.equals(currentEmployee)) {
+            if (employee.equals(currentEmployee)) {
                 found = 1;
                 break;
             }
         }
-    return found;
+        return found;
     }
 
     private void grow() {
@@ -49,23 +50,26 @@ public class Company {
 
 
     /**
-     Method to check the profile before adding.
-     @param employee
-     @return
+     * Method to check the profile before adding.
+     *
+     * @param employee
+     * @return
      */
     public boolean add(Employee employee) {
 
+        return false;
 
     }
 
     /**
-     Method to maintain the original sequence.
-     @param employee
-     @return
+     * Method to maintain the original sequence.
+     *
+     * @param employee
+     * @return
      */
     public boolean remove(Employee employee) {
         int removeIndex = find(employee);
-        if (removeIndex>=0) {
+        if (removeIndex >= 0) {
             emplist[removeIndex] = null;
             shift(removeIndex + 1);
             return true;
@@ -76,8 +80,9 @@ public class Company {
     }
 
     /**
-     Helper method to shift all items of an array begin at index start to the end of the array back by 1
-     @param 'starting' index
+     * Helper method to shift all items of an array begin at index start to the end of the array back by 1
+     *
+     * @param 'starting' index
      */
     private void shift(int start) {
 
@@ -90,91 +95,106 @@ public class Company {
 
 
     /**
-     Method to set working hours for a part-time employee.
-     @param employee
-     @return
+     * Method to set working hours for a part-time employee.
+     *
+     * @param employee
+     * @return
      */
     public boolean setHours(Employee employee) {
 
+        boolean isPartTime = false;
+
+
+        if(employee instanceof Parttime) {
+            isPartTime = true;
+        }
+
+        return isPartTime;
     }
 
     /**
-     Method to process payments for all employees.
-     @param 'none'
+     * Method to process payments for all employees.
+     *
+     * @param 'none'
      */
     public void processPayments() {
 
     }
 
     /**
-     Method to print earning statements for all employees.
-     @param 'none'
+     * Method to print earning statements for all employees.
+     *
+     * @param 'none'
      */
     public void print() {
 
-        for (int i = 0; i< numEmployee; i++) {
+        for (int i = 0; i < numEmployee; i++) {
             System.out.println(emplist[i].toString());
         }
     }
 
     /**
-     Helper method to implement selection sort for two different purposes: sort by date hired and sort by department
-     @param 'sorting' type/method
+     * Helper method to implement selection sort for two different purposes: sort by date hired and sort by department
+     *
+     * @param 'sorting' type/method
      */
     private void selectionSort(final int sortBy) {
-            if (sortBy ==SORT_BY_DATE) {
-                for (int i =0; i < numEmployee-1; i++) {
-                    for (int j = i+1;j < numEmployee; j++) {
-                        Date dt1 = emplist[i].getProfile().getDateHired();
-                        Calendar cal1 = Calendar.getInstance();
-                        cal1.set(Calendar.DATE, dt1.getDay());
-                        cal1.set(Calendar.MONTH,dt1.getMonth());
-                        cal1.set(Calendar.YEAR, dt1.getYear());
+        if (sortBy == SORT_BY_DATE) {
+            for (int i = 0; i < numEmployee - 1; i++) {
+                for (int j = i + 1; j < numEmployee; j++) {
+                    Date dt1 = emplist[i].getProfile().getDateHired();
+                    Calendar cal1 = Calendar.getInstance();
+                    cal1.set(Calendar.DATE, dt1.getDay());
+                    cal1.set(Calendar.MONTH, dt1.getMonth());
+                    cal1.set(Calendar.YEAR, dt1.getYear());
 
-                        Date dt2 = emplist[j].getProfile().getDateHired();
-                        Calendar cal2 = Calendar.getInstance();
-                        cal2.set(Calendar.DATE, dt2.getDay());
-                        cal2.set(Calendar.MONTH,dt2.getMonth());
-                        cal2.set(Calendar.YEAR, dt2.getYear());
+                    Date dt2 = emplist[j].getProfile().getDateHired();
+                    Calendar cal2 = Calendar.getInstance();
+                    cal2.set(Calendar.DATE, dt2.getDay());
+                    cal2.set(Calendar.MONTH, dt2.getMonth());
+                    cal2.set(Calendar.YEAR, dt2.getYear());
 
-                        if (cal1.getTime().compareTo(cal2.getTime()) > 0) {
-                            Employee temp_employee = emplist[i];
-                            emplist[i] = emplist[j];
-                            emplist[j] = temp_employee;
-                        }
-                    }
-
-                }
-            } else if (sortBy == SORT_BY_DEPARTMENT) {
-                for(int i = 0; i < numEmployee-1; i++) {
-                    for (int j = i+1; j < numEmployee; j++) {
-                        get
+                    if (cal1.getTime().compareTo(cal2.getTime()) > 0) {
+                        Employee temp_employee = emplist[i];
+                        emplist[i] = emplist[j];
+                        emplist[j] = temp_employee;
                     }
                 }
 
-
+            }
         }
     }
 
     /**
      * Method to print earning statements by department.
+     *
      * @param 'none'
      */
     public void printByDepartment() {
-        if (numEmployee == 0) {
-            System.out.println("Employee database is empty.");
-        } else {
-            selectionSort(SORT_BY_DEPARTMENT);
-            System.out.println("--Printing earning statements by department--");
-            for(int i = 0; i < numEmployee; i++) {
-                System.out.println(emplist[i].toString());
+
+        final Map<String, List<Employee>> depMap = new HashMap<>();
+
+        for (final Employee employee : emplist) {
+
+            if(depMap.get(employee.getProfile().getDepartment()) == null) {
+                final List<Employee> employees = new ArrayList<>();
+                depMap.put(employee.getProfile().getDepartment(), employees);
             }
-            System.out.println("**End of list");
+            depMap.get(employee.getProfile().getDepartment()).add(employee);
         }
+
+        for(String department: depMap.keySet()) {
+            for(final Employee employee:depMap.get(department)) {
+                System.out.println("department:"+department+", payment:"+employee.getPayment());
+            }
+        }
+
+
     }
 
     /**
      * Method to print earning statements by date hired.
+     *
      * @param 'none'
      */
     public void printByDate() {
