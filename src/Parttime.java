@@ -5,6 +5,15 @@
 public class Parttime extends Employee{
     private int hoursWorked;
 
+    public Parttime(){
+        this(null, 0);
+    }
+
+    public Parttime(Profile profile, double comp){
+        super(profile, comp);
+    }
+
+
     @Override
     public void calculatePayment() {
 
@@ -12,7 +21,15 @@ public class Parttime extends Employee{
 
     @Override
     public String toString(){
-        return super.toString();
+
+        String profileInfo = super.toString();
+        String paymentInfo = String.valueOf(super.getPayment());
+        String wageInfo = String.valueOf(super.getComp());
+        String hoursInfo = String.valueOf(this.hoursWorked);
+
+        return (profileInfo + "::" + "Payment $" + paymentInfo + "::PART TIME::Houry Rate $" + wageInfo + "::Hours " +
+                "worked this period: " + hoursInfo);
+
     }
 
     @Override

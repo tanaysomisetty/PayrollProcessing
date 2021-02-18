@@ -24,10 +24,10 @@ public class Fulltime extends Employee{
     public String toString(){
 
         String profileInfo = super.toString();
-        String payment = String.valueOf(super.getPayment());
-        String salary = String.valueOf(super.getComp());
+        String paymentInfo = String.valueOf(super.getPayment());
+        String salaryInfo = String.valueOf(super.getComp());
 
-        return (profileInfo + "::" + "Payment $" + payment + "::FULL TIME::Annual Salary $" + salary);
+        return (profileInfo + "::" + "Payment $" + paymentInfo + "::FULL TIME::Annual Salary $" + salaryInfo);
 
     }
 
