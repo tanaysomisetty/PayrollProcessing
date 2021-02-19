@@ -181,21 +181,14 @@ public class Company {
      */
     public void printByDepartment() {
 
-        final Map<String, List<Employee>> depMap = new HashMap<>();
 
-        for (final Employee employee : emplist) {
+        int[] CsDepArray = new int[100];
+        int[] EceDepArray = new int[100];
+        int[] ItDepArray = new int[100];
 
-            if (depMap.get(employee.getProfile().getDepartment()) == null) {
-                final List<Employee> employees = new ArrayList<>();
-                depMap.put(employee.getProfile().getDepartment(), employees);
-            }
-            depMap.get(employee.getProfile().getDepartment()).add(employee);
-        }
+        for (int i =0; i < emplist.length; i++) {
+            emplist[i].getProfile().getDepartment();
 
-        for (String department : depMap.keySet()) {
-            for (final Employee employee : depMap.get(department)) {
-                System.out.println("department:" + department + ", payment:" + employee.getPayment());
-            }
         }
 
 
