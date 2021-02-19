@@ -1,4 +1,4 @@
-package Payroll;
+package payroll;
 
 /**
  Defines the common data and operations for all employee types.
