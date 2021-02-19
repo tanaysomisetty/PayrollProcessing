@@ -46,7 +46,24 @@ public class Parttime extends Employee{
 
     @Override
     public boolean equals(Object obj){
-        return super.equals(obj);
+        if (obj instanceof Parttime){
+            Parttime parttime = (Parttime) obj;
+            Profile profile = parttime.getProfile();
+
+            Boolean nameCheck = profile.getName().equals(profile.getName());
+            Boolean deptCheck = profile.getDepartment().equals(profile.getDepartment());
+            int dateCheck = profile.getDateHired().compareTo(profile.getDateHired());
+
+            if (nameCheck && deptCheck && (dateCheck == 0)){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
     }
 
     /**
