@@ -1,3 +1,4 @@
+package payroll;
 /**
  Defines the profile of an employee with variables.
  @author Sailokesh Mondi, Tanay Somisetty

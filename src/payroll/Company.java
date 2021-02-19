@@ -1,5 +1,4 @@
-import java.awt.font.FontRenderContext;
-import java.util.*;
+package payroll;
 
 /**
  * An array-based container class that implements employee database.
@@ -182,12 +181,17 @@ public class Company {
     public void printByDepartment() {
 
 
-        int[] CsDepArray = new int[100];
-        int[] EceDepArray = new int[100];
-        int[] ItDepArray = new int[100];
+        int[] cSDepArray = new int[emplist.length];
+        int[] eCEDepArray = new int[emplist.length];
+        int[] itDepArray = new int[emplist.length];
+
+        int csDepCount =0;
+        int eceDepCount =0;
+        int itDepCount=0;
 
         for (int i =0; i < emplist.length; i++) {
-            emplist[i].getProfile().getDepartment();
+            String department = emplist[i].getProfile().getDepartment();
+            if(department.equ)
 
         }
 
