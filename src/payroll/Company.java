@@ -68,6 +68,7 @@ public class Company {
                 grow();
             }
             emplist[numEmployee] = employee;
+            numEmployee++;
             return true;
         }
         return false;
@@ -131,6 +132,19 @@ public class Company {
      */
     public void processPayments() {
 
+        for (Employee employee : emplist) {
+            if (employee instanceof Parttime) {
+                Parttime partimeEmployee = (Parttime) employee;
+                partimeEmployee.calculatePayment();
+            } else if (employee instanceof Fulltime) {
+                Fulltime fulltime = (Fulltime) employee;
+                fulltime.calculatePayment();
+            } else if (employee instanceof Management) {
+                Management management = (Management) employee;
+                management.calculatePayment();
+            }
+        }
+
     }
 
     /**
@@ -189,33 +203,33 @@ public class Company {
         Employee[] eCEDepArray = new Employee[emplist.length];
         Employee[] itDepArray = new Employee[emplist.length];
 
-        int csDepCount =0;
-        int eceDepCount =0;
-        int itDepCount=0;
+        int csDepCount = 0;
+        int eceDepCount = 0;
+        int itDepCount = 0;
 
-        for (int i =0; i < emplist.length; i++) {
+        for (int i = 0; i < emplist.length; i++) {
             String department = emplist[i].getProfile().getDepartment();
-           if(DEPARTMENT_CS.equals(department)) {
-               cSDepArray[csDepCount] = emplist[i];
-               csDepCount++;
-           } else if(DEPARTMENT_ECE.equals(department)) {
-               eCEDepArray[eceDepCount] = emplist[i];
-               eceDepCount++;
-            } else if(DEPARTMENT_IT.equals(department)) {
-               itDepArray[itDepCount] = emplist[i];
-               itDepCount++;
+            if (DEPARTMENT_CS.equals(department)) {
+                cSDepArray[csDepCount] = emplist[i];
+                csDepCount++;
+            } else if (DEPARTMENT_ECE.equals(department)) {
+                eCEDepArray[eceDepCount] = emplist[i];
+                eceDepCount++;
+            } else if (DEPARTMENT_IT.equals(department)) {
+                itDepArray[itDepCount] = emplist[i];
+                itDepCount++;
             }
         }
 
-        for(int i=0;i<csDepCount;i++) {
+        for (int i = 0; i < csDepCount; i++) {
             System.out.println(cSDepArray[i].getProfile().getName());
         }
 
-        for(int i=0;i<eceDepCount;i++) {
+        for (int i = 0; i < eceDepCount; i++) {
             System.out.println(eCEDepArray[i].getProfile().getName());
         }
 
-        for(int i=0;i<itDepCount;i++) {
+        for (int i = 0; i < itDepCount; i++) {
             System.out.println(itDepArray[i].getProfile().getName());
         }
 
