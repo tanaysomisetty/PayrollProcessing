@@ -15,7 +15,9 @@ public class Company {
     private int numEmployee;
     final static int INITIAL_CAPACITY = 4;
     final static int SORT_BY_DATE = 1;
-    final static int SORT_BY_DEPARTMENT = 2;
+    final static String DEPARTMENT_CS = "CS";
+    final static String DEPARTMENT_ECE = "ECE";
+    final static String DEPARTMENT_IT = "IT";
 
     public Company() {
         this.emplist = new Employee[INITIAL_CAPACITY];
@@ -183,9 +185,9 @@ public class Company {
     public void printByDepartment() {
 
 
-        int[] cSDepArray = new int[emplist.length];
-        int[] eCEDepArray = new int[emplist.length];
-        int[] itDepArray = new int[emplist.length];
+        Employee[] cSDepArray = new Employee[emplist.length];
+        Employee[] eCEDepArray = new Employee[emplist.length];
+        Employee[] itDepArray = new Employee[emplist.length];
 
         int csDepCount =0;
         int eceDepCount =0;
@@ -193,8 +195,28 @@ public class Company {
 
         for (int i =0; i < emplist.length; i++) {
             String department = emplist[i].getProfile().getDepartment();
-           // if(department.equ)
+           if(DEPARTMENT_CS.equals(department)) {
+               cSDepArray[csDepCount] = emplist[i];
+               csDepCount++;
+           } else if(DEPARTMENT_ECE.equals(department)) {
+               eCEDepArray[eceDepCount] = emplist[i];
+               eceDepCount++;
+            } else if(DEPARTMENT_IT.equals(department)) {
+               itDepArray[itDepCount] = emplist[i];
+               itDepCount++;
+            }
+        }
 
+        for(int i=0;i<csDepCount;i++) {
+            System.out.println(cSDepArray[i].getProfile().getName());
+        }
+
+        for(int i=0;i<eceDepCount;i++) {
+            System.out.println(eCEDepArray[i].getProfile().getName());
+        }
+
+        for(int i=0;i<itDepCount;i++) {
+            System.out.println(itDepArray[i].getProfile().getName());
         }
 
 
