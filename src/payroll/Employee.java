@@ -1,3 +1,5 @@
+package Payroll;
+
 /**
  Defines the common data and operations for all employee types.
  @author Sailokesh Mondi, Tanay Somisetty
@@ -6,7 +8,7 @@
 public abstract class Employee {
     private Profile profile;
     private double comp; //Compensation for an Employee, can be the hourly pay rate or annual salary
-    private double payment; //Current payment for an Employee
+    private double payment; //Current payment for an Employee after calculation
 
     /**
      The default constructor that sets the Profile instance variable to null.

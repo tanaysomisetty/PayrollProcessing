@@ -1,3 +1,5 @@
+package
+
 /**
  Extends the Employee class and includes specific data and operations to a full-time employee
  @author Sailokesh Mondi, Tanay Somisetty
@@ -17,7 +19,10 @@ public class Fulltime extends Employee{
 
     @Override
     public void calculatePayment() {
+        final int PAYMENT_PERIODS = 26;
+        double annualSalary = super.getComp();
 
+        super.setPayment(annualSalary / PAYMENT_PERIODS);
     }
 
     @Override

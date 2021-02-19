@@ -4,6 +4,7 @@
  */
 public class Parttime extends Employee{
     private int hoursWorked;
+    final static int Max_Hours = 80;
 
     public Parttime(){
         this(null, 0);
@@ -16,7 +17,17 @@ public class Parttime extends Employee{
 
     @Override
     public void calculatePayment() {
+        int regHours = this.hoursWorked;
+        int overTimeHours = 0;
 
+        if (regHours > 80){
+            overTimeHours = regHours - 80;
+        }
+
+        double regPay = regHours * super.getComp();
+        double overTimePay = overTimeHours * (super.getComp() * 1.5);
+
+        super.setPayment(regPay + overTimePay);
     }
 
     @Override

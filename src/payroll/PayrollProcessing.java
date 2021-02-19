@@ -13,6 +13,11 @@ public class PayrollProcessing {
 
     public void run() {
 
+
+        /*
+            For (S)ET WORKING HOURS: Make sure hours do not exceed 100 hours per pay period
+         */
+
         System.out.println("Payroll Processing starts.");
 
         Scanner sc = new Scanner(System.in);
