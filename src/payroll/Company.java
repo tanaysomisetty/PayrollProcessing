@@ -193,7 +193,7 @@ public class Company {
 
         for (int i =0; i < emplist.length; i++) {
             String department = emplist[i].getProfile().getDepartment();
-            if(department.equ)
+           // if(department.equ)
 
         }
 
