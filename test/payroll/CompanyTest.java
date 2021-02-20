@@ -1,12 +1,10 @@
 package payroll;
 
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.text.SimpleDateFormat;
 
 public class CompanyTest {
 
@@ -21,10 +19,10 @@ public class CompanyTest {
      */
 
     @Before
-    public void setUp()  {
+    public void setUp() {
         company = new Company();
         Date d1 = new Date("7/1/2020");
-        Profile p1 = new Profile("Doe,Jane","CS",d1);
+        Profile p1 = new Profile("Doe,Jane", "CS", d1);
         Employee e1 = new Parttime(p1, 0);
         company.add(e1);
 
@@ -34,7 +32,7 @@ public class CompanyTest {
     public void testAddForTrue() {
 
         Date d1 = new Date("7/1/2020");
-        Profile p1 = new Profile("Sam,Jane","ECE",d1);
+        Profile p1 = new Profile("Sam,Jane", "ECE", d1);
         Employee e1 = new Parttime(p1, 0);
         boolean firstTime = company.add(e1);
         Assert.assertTrue(firstTime);
@@ -44,7 +42,7 @@ public class CompanyTest {
     @Test
     public void testAddForFalse() {
         Date d1 = new Date("7/1/2020");
-        Profile p1 = new Profile("Doe,Jane","CS",d1);
+        Profile p1 = new Profile("Doe,Jane", "CS", d1);
         Employee e1 = new Parttime(p1, 0);
 
         boolean secondTime = company.add(e1);
@@ -55,23 +53,23 @@ public class CompanyTest {
     @Test
     public void testAddAfterGrow() {
         Date d = new Date("7/1/2020");
-        Profile p1 = new Profile("Doe,Jane1","CS",d);
+        Profile p1 = new Profile("Doe,Jane1", "CS", d);
         Employee e1 = new Parttime(p1, 0);
 
-        Profile p2 = new Profile("Doe,Jane2","CS",d);
+        Profile p2 = new Profile("Doe,Jane2", "CS", d);
         Employee e2 = new Parttime(p2, 0);
 
-        Profile p3 = new Profile("Doe,Jane3","CS",d);
+        Profile p3 = new Profile("Doe,Jane3", "CS", d);
         Employee e3 = new Parttime(p3, 0);
 
         company.add(e1);
         company.add(e2);
         company.add(e3);
 
-        Profile p4 = new Profile("Doe,Jane4","CS",d);
+        Profile p4 = new Profile("Doe,Jane4", "CS", d);
         Employee e4 = new Parttime(p4, 0);
 
-        boolean added  = company.add(e4);
+        boolean added = company.add(e4);
 
         Assert.assertTrue(added);
 
@@ -80,7 +78,7 @@ public class CompanyTest {
     @Test
     public void testRemoveTrue() {
         Date d1 = new Date("7/1/2020");
-        Profile p1 = new Profile("Doe,Jane","CS",d1);
+        Profile p1 = new Profile("Doe,Jane", "CS", d1);
         Employee e1 = new Parttime(p1, 0);
         boolean removed = company.remove(e1);
         Assert.assertTrue(removed);
@@ -89,7 +87,7 @@ public class CompanyTest {
     @Test
     public void testRemoveFalse() {
         Date d1 = new Date("7/1/2020");
-        Profile p1 = new Profile("Fake,Jane","CS",d1);
+        Profile p1 = new Profile("Fake,Jane", "CS", d1);
         Employee e1 = new Parttime(p1, 0);
         boolean removed = company.remove(e1);
         Assert.assertFalse(removed);
@@ -97,6 +95,10 @@ public class CompanyTest {
 
     @Test
     public void testSetHoursTrue() {
-
+        Date d1 = new Date("7/1/2020");
+        Profile p1 = new Profile("Doe, Jane", "CS", d1);
+        Employee e1 = new Parttime(p1, 0);
+        boolean setHours = company.setHours(e1);
+        Assert.assertTrue(setHours);
     }
 }
