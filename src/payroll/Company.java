@@ -1,7 +1,5 @@
 package payroll;
 
-import java.util.Calendar;
-
 /**
  * An array-based container class that implements employee database.
  * Stores a list of employees, which may include instances of full-time,part-time,
@@ -9,6 +7,9 @@ import java.util.Calendar;
  *
  * @author Sailokesh Mondi, Tanay Somisetty
  */
+
+import java.util.Calendar;
+import java.util.*;
 
 public class Company {
     private Employee[] emplist;

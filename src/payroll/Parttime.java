@@ -5,6 +5,7 @@ package payroll;
  *
  * @author Sailokesh Mondi, Tanay Somisetty
  */
+
 public class Parttime extends Employee {
     private int hoursWorked;
     final static int Max_Hours = 80;

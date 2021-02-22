@@ -9,6 +9,8 @@ package payroll;
 
 import java.util.Scanner;
 import java.util.StringTokenizer;
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 
 public class PayrollProcessing {
     private static Company myCompany = null;
@@ -26,17 +28,85 @@ public class PayrollProcessing {
 
         String input = sc.next();
 
-        String cmdOptions = "AP AF AM R C S PA PH PD Q";
+
 
         myCompany = new Company();
 
         while (input != "Q") {
             StringTokenizer st = new StringTokenizer(input, " ");
-            String commandType = st.nextToken();
-            if (!cmdOptions.contains(commandType)) {
+            String commandType = "";
+            try {
+                commandType = st.nextToken();
+            }
+            catch (NoSuchElementException e) {
+                //empty catch block
+            }
+
+            String nextCmd = "";
+
+            try {
+                nextCmd = testCmd(commandType);
+            }
+            catch (InputMismatchException e) {
                 System.out.println("Command '" + commandType + "' not supported!");
             }
+
+            if (nextCmd.equals("AP")) {
+                System.out.println("Add partime");
+            }
+
+            else if (nextCmd.equals("AF")) {
+                System.out.println("Add fulltime");
+            }
+
+            else if (nextCmd.equals("AM")) {
+                System.out.println("Add manager");
+            }
+
+            else if (nextCmd.equals("R")){
+                System.out.println("Remove employee");
+            }
+
+            else if (nextCmd.equals("S")){
+                System.out.println("Set working hours");
+            }
+
+            else if (nextCmd.equals("C")) {
+                myCompany.processPayments();
+            }
+
+            else if (nextCmd.equals("PA")) {
+                    myCompany.print();
+            }
+
+            else if (nextCmd.equals("PH")) {
+                myCompany.printByDate();
+            }
+
+            else if (nextCmd.equals("PD")) {
+                myCompany.printByDepartment();
+            }
+
+
+
+            else if (nextCmd.equals("Q")){
+                System.out.println("Payroll Processing completed.");
+                System.exit(1);
+            }
+
+            input = sc.nextLine();
         }
+
+    }
+
+    private String testCmd(String cmd) {
+        String cmdOptions = "AP AF AM R C S PA PH PD Q";
+
+        if (!cmdOptions.contains(cmd)){
+            throw new InputMismatchException("Command '" + cmd + "' not supported!");
+
+        }
+        return cmd;
 
     }
 

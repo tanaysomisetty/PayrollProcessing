@@ -6,7 +6,7 @@ package payroll;
  * @author Sailokesh Mondi, Tanay Somisetty
  */
 
-public class Management extends Fulltime {
+public class Management extends Fulltime{
     private int managerCode;
     private double extraComp;
 
