@@ -1,18 +1,19 @@
 package payroll;
 
 /**
- Extends the Employee class and includes specific data and operations to a full-time employee
- @author Sailokesh Mondi, Tanay Somisetty
+ * Extends the Employee class and includes specific data and operations to a full-time employee
+ *
+ * @author Sailokesh Mondi, Tanay Somisetty
  */
 
-public class Fulltime extends Employee{
+public class Fulltime extends Employee {
 
 
-    public Fulltime(){
+    public Fulltime() {
         this(null, 0);
     }
 
-    public Fulltime(Profile profile, double comp){
+    public Fulltime(Profile profile, double comp) {
         super(profile, comp);
     }
 
@@ -26,7 +27,7 @@ public class Fulltime extends Employee{
     }
 
     @Override
-    public String toString(){
+    public String toString() {
 
         String profileInfo = super.toString();
         String paymentInfo = String.valueOf(super.getPayment());
@@ -37,7 +38,7 @@ public class Fulltime extends Employee{
     }
 
     @Override
-    public boolean equals(Object obj){
+    public boolean equals(Object obj) {
         return super.equals(obj);
     }
 }

@@ -1,3 +1,5 @@
+package payroll;
+
 /**
  * An array-based container class that implements employee database.
  * Stores a list of employees, which may include instances of full-time,part-time,
@@ -6,8 +8,7 @@
  * @author Sailokesh Mondi, Tanay Somisetty
  */
 
-package payroll;
-
+import java.util.Calendar;
 import java.util.*;
 
 public class Company {
@@ -15,7 +16,9 @@ public class Company {
     private int numEmployee;
     final static int INITIAL_CAPACITY = 4;
     final static int SORT_BY_DATE = 1;
-    final static int SORT_BY_DEPARTMENT = 2;
+    final static String DEPARTMENT_CS = "CS";
+    final static String DEPARTMENT_ECE = "ECE";
+    final static String DEPARTMENT_IT = "IT";
 
     public Company() {
         this.emplist = new Employee[INITIAL_CAPACITY];
@@ -66,6 +69,7 @@ public class Company {
                 grow();
             }
             emplist[numEmployee] = employee;
+            numEmployee++;
             return true;
         }
         return false;
@@ -129,6 +133,19 @@ public class Company {
      */
     public void processPayments() {
 
+        for (Employee employee : emplist) {
+            if (employee instanceof Parttime) {
+                Parttime partimeEmployee = (Parttime) employee;
+                partimeEmployee.calculatePayment();
+            } else if (employee instanceof Fulltime) {
+                Fulltime fulltime = (Fulltime) employee;
+                fulltime.calculatePayment();
+            } else if (employee instanceof Management) {
+                Management management = (Management) employee;
+                management.calculatePayment();
+            }
+        }
+
     }
 
     /**
@@ -182,21 +199,39 @@ public class Company {
      */
     public void printByDepartment() {
 
-        final Map<String, List<Employee>> depMap = new HashMap<>();
 
-        for (final Employee employee : emplist) {
+        Employee[] cSDepArray = new Employee[emplist.length];
+        Employee[] eCEDepArray = new Employee[emplist.length];
+        Employee[] itDepArray = new Employee[emplist.length];
 
-            if (depMap.get(employee.getProfile().getDepartment()) == null) {
-                final List<Employee> employees = new ArrayList<>();
-                depMap.put(employee.getProfile().getDepartment(), employees);
+        int csDepCount = 0;
+        int eceDepCount = 0;
+        int itDepCount = 0;
+
+        for (int i = 0; i < emplist.length; i++) {
+            String department = emplist[i].getProfile().getDepartment();
+            if (DEPARTMENT_CS.equals(department)) {
+                cSDepArray[csDepCount] = emplist[i];
+                csDepCount++;
+            } else if (DEPARTMENT_ECE.equals(department)) {
+                eCEDepArray[eceDepCount] = emplist[i];
+                eceDepCount++;
+            } else if (DEPARTMENT_IT.equals(department)) {
+                itDepArray[itDepCount] = emplist[i];
+                itDepCount++;
             }
-            depMap.get(employee.getProfile().getDepartment()).add(employee);
         }
 
-        for (String department : depMap.keySet()) {
-            for (final Employee employee : depMap.get(department)) {
-                System.out.println("department:" + department + ", payment:" + employee.getPayment());
-            }
+        for (int i = 0; i < csDepCount; i++) {
+            System.out.println(cSDepArray[i].getProfile().getName());
+        }
+
+        for (int i = 0; i < eceDepCount; i++) {
+            System.out.println(eCEDepArray[i].getProfile().getName());
+        }
+
+        for (int i = 0; i < itDepCount; i++) {
+            System.out.println(itDepArray[i].getProfile().getName());
         }
 
 

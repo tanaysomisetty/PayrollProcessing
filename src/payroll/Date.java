@@ -1,9 +1,9 @@
-/**
- This class defines the properties of a Date object.
- @author Sailokesh Mondi, Tanay Somisetty
- */
-
 package payroll;
+/**
+ * This class defines the properties of a Date object.
+ *
+ * @author Sailokesh Mondi, Tanay Somisetty
+ */
 
 import java.util.Calendar;
 import java.util.StringTokenizer;
@@ -28,27 +28,21 @@ public class Date implements Comparable<Date> {
      */
     @Override
     public int compareTo(Date date) {
-        if (this.year > date.year){
+        if (this.year > date.year) {
             return 1;
-        }
-        else if (this.year < date.year) {
+        } else if (this.year < date.year) {
             return -1;
-        }
-        else {
-            if (this.month > date.month){
+        } else {
+            if (this.month > date.month) {
                 return 1;
-            }
-            else if (this.month < date.month){
+            } else if (this.month < date.month) {
                 return -1;
-            }
-            else {
-                if (this.day > this.day){
+            } else {
+                if (this.day > this.day) {
                     return 1;
-                }
-                else if (this.day < this.day){
+                } else if (this.day < this.day) {
                     return -1;
-                }
-                else return 0;
+                } else return 0;
             }
         }
     }
@@ -109,7 +103,7 @@ public class Date implements Comparable<Date> {
 
         // year Validation
         if (year < YearThresholdOne || year >= YearThresholdTwo) {
-            if((year == YearThresholdTwo) && (month <= CURRENT_MONTH && month >= 1) && (day <= CURRENT_DAY && day >= 1)) {
+            if ((year == YearThresholdTwo) && (month <= CURRENT_MONTH && month >= 1) && (day <= CURRENT_DAY && day >= 1)) {
                 return true;
             }
             return false;
@@ -161,11 +155,9 @@ public class Date implements Comparable<Date> {
     }
 
 
-
     public int getMonth() {
         return month;
     }
-
 
 
     public int getDay() {

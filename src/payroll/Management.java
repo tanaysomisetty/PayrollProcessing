@@ -1,9 +1,10 @@
-/**
- Extends the Full-time class and includes specific data and operations to a full-time employee with a management role.
- @author Sailokesh Mondi, Tanay Somisetty
- */
-
 package payroll;
+
+/**
+ * Extends the Full-time class and includes specific data and operations to a full-time employee with a management role.
+ *
+ * @author Sailokesh Mondi, Tanay Somisetty
+ */
 
 public class Management extends Fulltime{
     private int managerCode;
@@ -14,7 +15,7 @@ public class Management extends Fulltime{
 
     }
 
-    public Management(Profile profile, double comp, int managerCode){
+    public Management(Profile profile, double comp, int managerCode) {
         super(profile, comp);
         final double MANAGER_COMP = 5000;
         final double DEPT_HEAD_COMP = 9500;
@@ -24,12 +25,10 @@ public class Management extends Fulltime{
         if (managerCode == 1) { //Manager
             this.managerCode = managerCode;
             this.extraComp = MANAGER_COMP / PAYMENT_PERIODS;
-        }
-        else if (managerCode == 2 ) { //Department Head
+        } else if (managerCode == 2) { //Department Head
             this.managerCode = managerCode;
             this.extraComp = DEPT_HEAD_COMP / PAYMENT_PERIODS;
-        }
-        else if (managerCode == 3) { //Director
+        } else if (managerCode == 3) { //Director
             this.managerCode = managerCode;
             this.extraComp = DIRECTOR_COMP / PAYMENT_PERIODS;
         }
@@ -45,7 +44,7 @@ public class Management extends Fulltime{
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String fulltimeInfo = super.toString();
         String extraCompInfo = String.valueOf(this.extraComp);
 
@@ -53,7 +52,7 @@ public class Management extends Fulltime{
     }
 
     @Override
-    public boolean equals(Object obj){
+    public boolean equals(Object obj) {
         return super.equals(obj);
     }
 
