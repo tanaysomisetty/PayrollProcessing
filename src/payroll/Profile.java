@@ -3,6 +3,8 @@
  @author Sailokesh Mondi, Tanay Somisetty
  */
 
+package payroll;
+
 public class Profile {
     private String name; //employee's name in the form "lastname,firstname"
     private String department; //department code: CS, ECE, IT

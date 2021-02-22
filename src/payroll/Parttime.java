@@ -2,6 +2,9 @@
  This class extends the Employee class and includes specific data and operations for a part-time employee.
  @author Sailokesh Mondi, Tanay Somisetty
  */
+
+package payroll;
+
 public class Parttime extends Employee{
     private int hoursWorked;
     final static int Max_Hours = 80;

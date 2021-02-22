@@ -1,6 +1,3 @@
-import java.awt.font.FontRenderContext;
-import java.util.*;
-
 /**
  * An array-based container class that implements employee database.
  * Stores a list of employees, which may include instances of full-time,part-time,
@@ -8,6 +5,10 @@ import java.util.*;
  *
  * @author Sailokesh Mondi, Tanay Somisetty
  */
+
+package payroll;
+
+import java.util.*;
 
 public class Company {
     private Employee[] emplist;

@@ -1,4 +1,4 @@
-package
+package payroll;
 
 /**
  Extends the Employee class and includes specific data and operations to a full-time employee

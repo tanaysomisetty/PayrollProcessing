@@ -3,6 +3,8 @@
  @author Sailokesh Mondi, Tanay Somisetty
  */
 
+package payroll;
+
 public class Management extends Fulltime{
     private int managerCode;
     private double extraComp;
