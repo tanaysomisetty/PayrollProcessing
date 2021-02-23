@@ -10,15 +10,26 @@ public class Parttime extends Employee {
     private int hoursWorked;
     final static int Max_Hours = 80;
 
+    /**
+     The default constructor that sets the Profile instance variable to null.
+     @param 'none'
+     */
     public Parttime() {
         this(null, 0);
     }
 
+    /**
+     Constructor that takes profile and compensation. Calls the constructor from the super class.
+     * @param profile of employee
+     * @param comp of employee
+     */
     public Parttime(Profile profile, double comp) {
         super(profile, comp);
     }
 
-
+    /**
+     *
+     */
     @Override
     public void calculatePayment() {
         int regHours = this.hoursWorked;
@@ -34,6 +45,10 @@ public class Parttime extends Employee {
         super.setPayment(regPay + overTimePay);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
 
@@ -47,6 +62,11 @@ public class Parttime extends Employee {
 
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Parttime) {
