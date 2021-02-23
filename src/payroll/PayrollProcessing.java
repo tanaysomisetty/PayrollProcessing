@@ -43,8 +43,7 @@ public class PayrollProcessing {
 
             try {
                 nextCmd = testInput(nextCmd, "command");
-            }
-            catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 System.out.println("Command '" + nextCmd + "' not supported!");
             }
 
@@ -61,50 +60,39 @@ public class PayrollProcessing {
                         boolean added = myCompany.add(newPT);
                         if (added) {
                             System.out.println("Employee added.");
-                        }
-                        else {
+                        } else {
                             System.out.println("Employee is already in the list");
                         }
-                    }
-                    else if (nextCmd.equals("AF")) {
+                    } else if (nextCmd.equals("AF")) {
                         Fulltime newFT = new Fulltime(newProfile, newComp);
                         boolean added = myCompany.add(newFT);
                         if (added) {
                             System.out.println("Employee added.");
-                        }
-                        else {
+                        } else {
                             System.out.println("Employee is already in the list");
                         }
-                    }
-                    else if (nextCmd.equals("AM")) {
+                    } else if (nextCmd.equals("AM")) {
                         int newMangRole = Integer.valueOf(testInput(tokens[MANAGER_ROLE_INDEX], "manager_role"));
                         Management newMG = new Management(newProfile, newComp, newMangRole);
                         boolean added = myCompany.add(newMG);
                         if (added) {
                             System.out.println("Employee added.");
-                        }
-                        else {
+                        } else {
                             System.out.println("Employee is already in the list");
                         }
                     }
-                }
-                catch (InputMismatchException e){
+                } catch (InputMismatchException e) {
                     if (e.getMessage().equals("department error")) {
                         System.out.println("'" + tokens[DEPARTMENT_INDEX] + "' is not a valid department code.");
-                    }
-                    else if (e.getMessage().equals("date error")) {
+                    } else if (e.getMessage().equals("date error")) {
                         System.out.println(tokens[DATE_INDEX] + " is not a valid date!");
-                    }
-                    else if (e.getMessage().equals("compensation error")) {
+                    } else if (e.getMessage().equals("compensation error")) {
                         System.out.println("Salary cannot be negative");
-                    }
-                    else if (e.getMessage().equals("manager-role error")) {
+                    } else if (e.getMessage().equals("manager-role error")) {
                         System.out.println("Invalid management code");
                     }
                 }
-            }
-
-            else if (nextCmd.equals("R")){
+            } else if (nextCmd.equals("R")) {
                 try {
                     String newName = testInput(tokens[NAME_INDEX], "name");
                     String newDept = testInput(tokens[DEPARTMENT_INDEX], "department");
@@ -117,50 +105,32 @@ public class PayrollProcessing {
                     int numEmployee = myCompany.getNumEmployee();
                     if (numEmployee == 0) {
                         System.out.println("Employee database is empty");
-                    }
-                    else {
+                    } else {
                         boolean removed = myCompany.remove(newEM);
                         if (removed) {
                             System.out.println("Employee removed.");
-                        }
-                        else {
+                        } else {
                             System.out.println("Employee does not exist");
                         }
                     }
-                }
-                catch (InputMismatchException e){
+                } catch (InputMismatchException e) {
                     if (e.getMessage().equals("department error")) {
                         System.out.println("'" + tokens[DEPARTMENT_INDEX] + "' is not a valid department code.");
-                    }
-                    else if (e.getMessage().equals("date error")) {
+                    } else if (e.getMessage().equals("date error")) {
                         System.out.println(tokens[DATE_INDEX] + " is not a valid date!");
                     }
                 }
-            }
-
-            else if (nextCmd.equals("S")){
+            } else if (nextCmd.equals("S")) {
                 System.out.println("Set working hours");
-            }
-
-            else if (nextCmd.equals("C")) {
+            } else if (nextCmd.equals("C")) {
                 myCompany.processPayments();
-            }
-
-            else if (nextCmd.equals("PA")) {
+            } else if (nextCmd.equals("PA")) {
                 myCompany.print();
-            }
-
-            else if (nextCmd.equals("PH")) {
+            } else if (nextCmd.equals("PH")) {
                 myCompany.printByDate();
-            }
-
-            else if (nextCmd.equals("PD")) {
+            } else if (nextCmd.equals("PD")) {
                 myCompany.printByDepartment();
-            }
-
-
-
-            else if (nextCmd.equals("Q")){
+            } else if (nextCmd.equals("Q")) {
                 System.out.println("Payroll Processing completed.");
                 System.exit(1);
             }
@@ -175,44 +145,34 @@ public class PayrollProcessing {
 
         if (option.equals("command")) {
             String cmdOptions = "AP AF AM R C S PA PH PD Q";
-            if (!cmdOptions.contains(input)){
+            if (!cmdOptions.contains(input)) {
                 throw new InputMismatchException("command error");
 
             }
             return input;
-        }
-
-        else if (option.equals("name")) {
+        } else if (option.equals("name")) {
             return input;
-        }
-
-        else if (option.equals("department")) {
+        } else if (option.equals("department")) {
             String deptOptions = "CS ECE IT";
-            if (!deptOptions.contains(input)){
+            if (!deptOptions.contains(input)) {
                 throw new InputMismatchException("department error");
             }
             return input;
 
-        }
-
-        else if (option.equals("date")) {
+        } else if (option.equals("date")) {
             Date testDate = new Date(input);
-            if (!testDate.isValid()){
+            if (!testDate.isValid()) {
                 throw new InputMismatchException("date error");
             }
             return input;
 
-        }
-
-        else if (option.equals("comp")) {
+        } else if (option.equals("comp")) {
             double doubleComp = Double.valueOf(input);
             if (doubleComp < 0) {
                 throw new InputMismatchException("compensation error");
             }
             return input;
-        }
-
-        else if (option.equals("manager_role")) {
+        } else if (option.equals("manager_role")) {
             String mangOptions = "1 2 3";
             if (!mangOptions.contains(input)) {
                 throw new InputMismatchException("manager-role error");
