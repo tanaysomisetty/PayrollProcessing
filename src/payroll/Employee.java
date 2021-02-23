@@ -64,8 +64,8 @@ public class Employee {
             Employee employee = (Employee) obj;
             Profile profile = employee.profile;
 
-            Boolean nameCheck = this.profile.getName().equals(profile.getName());
-            Boolean deptCheck = this.profile.getDepartment().equals(profile.getDepartment());
+            boolean nameCheck = this.profile.getName().equals(profile.getName());
+            boolean deptCheck = this.profile.getDepartment().equals(profile.getDepartment());
             int dateCheck = this.profile.getDateHired().compareTo(profile.getDateHired());
 
             if (nameCheck && deptCheck && (dateCheck == 0)) {
@@ -73,7 +73,8 @@ public class Employee {
             } else {
                 return false;
             }
-        } else {
+        }
+        else {
             return false;
         }
     }
