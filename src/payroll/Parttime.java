@@ -39,6 +39,7 @@ public class Parttime extends Employee {
 
         if (regHours > 80) {
             overTimeHours = regHours - 80;
+            regHours = 80;
         }
 
         double regPay = regHours * super.getComp();

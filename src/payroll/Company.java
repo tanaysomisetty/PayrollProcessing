@@ -22,7 +22,7 @@ public class Company {
 
     public Company() {
         this.emplist = new Employee[INITIAL_CAPACITY];
-        numEmployee = 0;
+        this.numEmployee = 0;
     }
 
     /**
@@ -71,7 +71,7 @@ public class Company {
                 grow();
             }
             emplist[numEmployee] = employee;
-            numEmployee++;
+            this.numEmployee++;
             return true;
         }
         return false;
@@ -121,6 +121,9 @@ public class Company {
 
         if (employee instanceof Parttime) {
             int setHoursIndex = find(employee);
+            if (setHoursIndex < 0) {
+                return false;
+            }
             int hours = ((Parttime) employee).getHoursWorked();
             ((Parttime) emplist[setHoursIndex]).setHoursWorked(hours);
             return true;
@@ -156,7 +159,7 @@ public class Company {
      */
     public void print() {
         if (numEmployee == 0) {
-            System.out.println("Employee database is empty");
+            System.out.println("Employee database is empty.");
             return;
         }
         System.out.println("--Printing earning statements for all employees--");
@@ -202,7 +205,7 @@ public class Company {
      */
     public void printByDepartment() {
         if (numEmployee == 0) {
-            System.out.println("Employee database is empty");
+            System.out.println("Employee database is empty.");
             return;
         }
 

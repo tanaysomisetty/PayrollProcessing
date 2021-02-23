@@ -8,9 +8,9 @@ package payroll;
  */
 
 import java.util.Scanner;
-import java.util.StringTokenizer;
 import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
+import java.lang.NumberFormatException;
+import java.lang.ArrayIndexOutOfBoundsException;
 
 public class PayrollProcessing {
     private static Company myCompany = null;
@@ -37,6 +37,7 @@ public class PayrollProcessing {
             final int DEPARTMENT_INDEX = 2;
             final int DATE_INDEX = 3;
             final int COMPENSATION_INDEX = 4;
+            final int WORKING_HOURS_INDEX = 4;
             final int MANAGER_ROLE_INDEX = 5;
 
             String nextCmd = tokens[COMMAND_INDEX];
@@ -61,7 +62,7 @@ public class PayrollProcessing {
                         if (added) {
                             System.out.println("Employee added.");
                         } else {
-                            System.out.println("Employee is already in the list");
+                            System.out.println("Employee is already in the list.");
                         }
                     } else if (nextCmd.equals("AF")) {
                         Fulltime newFT = new Fulltime(newProfile, newComp);
@@ -69,7 +70,7 @@ public class PayrollProcessing {
                         if (added) {
                             System.out.println("Employee added.");
                         } else {
-                            System.out.println("Employee is already in the list");
+                            System.out.println("Employee is already in the list.");
                         }
                     } else if (nextCmd.equals("AM")) {
                         int newMangRole = Integer.valueOf(testInput(tokens[MANAGER_ROLE_INDEX], "manager_role"));
@@ -78,7 +79,7 @@ public class PayrollProcessing {
                         if (added) {
                             System.out.println("Employee added.");
                         } else {
-                            System.out.println("Employee is already in the list");
+                            System.out.println("Employee is already in the list.");
                         }
                     }
                 } catch (InputMismatchException e) {
@@ -87,11 +88,17 @@ public class PayrollProcessing {
                     } else if (e.getMessage().equals("date error")) {
                         System.out.println(tokens[DATE_INDEX] + " is not a valid date!");
                     } else if (e.getMessage().equals("compensation error")) {
-                        System.out.println("Salary cannot be negative");
+                        if (nextCmd.equals("AP")) {
+                            System.out.println("Pay rate cannot be negative");
+                        }
+                        else if (nextCmd.equals("AF") || nextCmd.equals("AM")) {
+                            System.out.println("Salary cannot be negative");
+                        }
                     } else if (e.getMessage().equals("manager-role error")) {
-                        System.out.println("Invalid management code");
+                        System.out.println("Invalid management code.");
                     }
                 }
+
             } else if (nextCmd.equals("R")) {
                 try {
                     String newName = testInput(tokens[NAME_INDEX], "name");
@@ -120,26 +127,63 @@ public class PayrollProcessing {
                         System.out.println(tokens[DATE_INDEX] + " is not a valid date!");
                     }
                 }
+
             } else if (nextCmd.equals("S")) {
-                int numEmployee = myCompany.getNumEmployee();
-                if (numEmployee == 0) {
+
+                try {
+                    String newName = testInput(tokens[NAME_INDEX], "name");
+                    String newDept = testInput(tokens[DEPARTMENT_INDEX], "department");
+                    String newDateHired = testInput(tokens[DATE_INDEX], "date");
+                    int newHours = Integer.valueOf(testInput(tokens[WORKING_HOURS_INDEX], "hours"));
+
+                    Date newDate = new Date(newDateHired);
+                    Profile newProfile = new Profile(newName, newDept, newDate);
+                    Parttime newPT = new Parttime(newProfile, 0);
+                    newPT.setHoursWorked(newHours);
+
+                    int numEmployee = myCompany.getNumEmployee();
+                    if (numEmployee == 0) {
+                        System.out.println("Employee database is empty.");
+                    } else {
+                        boolean set = myCompany.setHours(newPT);
+                        if (set) {
+                            System.out.println("Working hours set.");
+                        }
+                        else {
+                            System.out.println("Employee does not exist.");
+                        }
+
+
+                    }
+                } catch (InputMismatchException e) {
+                    if (e.getMessage().equals("working-hours negative error")) {
+                        System.out.println("Working hours cannot be negative");
+                    }
+                    else {
+                        System.out.println(e.getMessage());
+                    }
+                } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("Employee database is empty.");
-                }else {
-                    System.out.println("Working hours set.");
                 }
+
             } else if (nextCmd.equals("C")) {
                 int numEmployee = myCompany.getNumEmployee();
                 if (numEmployee == 0) {
                     System.out.println("Employee database is empty");
-                }else {
+                } else {
                     myCompany.processPayments();
+                    System.out.println("Calculation of employee payments is done.");
                 }
+
             } else if (nextCmd.equals("PA")) {
                 myCompany.print();
+
             } else if (nextCmd.equals("PH")) {
                 myCompany.printByDate();
+
             } else if (nextCmd.equals("PD")) {
                 myCompany.printByDepartment();
+
             } else if (nextCmd.equals("Q")) {
                 System.out.println("Payroll Processing completed.");
                 System.exit(1);
@@ -187,10 +231,18 @@ public class PayrollProcessing {
             if (!mangOptions.contains(input)) {
                 throw new InputMismatchException("manager-role error");
             }
-
+            return input;
+        } else if (option.equals("hours")) {
+            final int MAX_HOURS = 100;
+            int workingHours = Integer.valueOf(input);
+            if (workingHours > MAX_HOURS) {
+                throw new InputMismatchException("Invalid Hours: over " + MAX_HOURS);
+            }
+            else if (workingHours < 0) {
+                throw new InputMismatchException("working-hours negative error");
+            }
             return input;
         }
-
         return input;
     }
 
