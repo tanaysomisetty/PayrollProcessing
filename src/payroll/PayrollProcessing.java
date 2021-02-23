@@ -121,9 +121,19 @@ public class PayrollProcessing {
                     }
                 }
             } else if (nextCmd.equals("S")) {
-                System.out.println("Set working hours");
+                int numEmployee = myCompany.getNumEmployee();
+                if (numEmployee == 0) {
+                    System.out.println("Employee database is empty.");
+                }else {
+                    System.out.println("Working hours set.");
+                }
             } else if (nextCmd.equals("C")) {
-                myCompany.processPayments();
+                int numEmployee = myCompany.getNumEmployee();
+                if (numEmployee == 0) {
+                    System.out.println("Employee database is empty");
+                }else {
+                    myCompany.processPayments();
+                }
             } else if (nextCmd.equals("PA")) {
                 myCompany.print();
             } else if (nextCmd.equals("PH")) {
