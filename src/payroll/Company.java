@@ -19,6 +19,7 @@ public class Company {
     final static String DEPARTMENT_ECE = "ECE";
     final static String DEPARTMENT_IT = "IT";
 
+
     public Company() {
         this.emplist = new Employee[INITIAL_CAPACITY];
         numEmployee = 0;
@@ -232,15 +233,15 @@ public class Company {
         }
 
         for (int i = 0; i < csDepCount; i++) {
-            System.out.println(cSDepArray[i].getProfile().getName());
+            System.out.println(cSDepArray[i]);
         }
 
         for (int i = 0; i < eceDepCount; i++) {
-            System.out.println(eCEDepArray[i].getProfile().getName());
+            System.out.println(eCEDepArray[i]);
         }
 
         for (int i = 0; i < itDepCount; i++) {
-            System.out.println(itDepArray[i].getProfile().getName());
+            System.out.println(itDepArray[i]);
         }
 
 
