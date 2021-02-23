@@ -1,5 +1,7 @@
 package payroll;
 
+import java.text.DecimalFormat;
+
 /**
  * This class extends the Employee class and includes specific data and operations for a part-time employee.
  *
@@ -52,12 +54,14 @@ public class Parttime extends Employee {
     @Override
     public String toString() {
 
+        DecimalFormat dFormat = new DecimalFormat("'$'0.00");
+
         String profileInfo = super.toString();
-        String paymentInfo = String.valueOf(super.getPayment());
-        String wageInfo = String.valueOf(super.getComp());
+        String paymentInfo = String.valueOf(dFormat.format(super.getPayment()));
+        String wageInfo = String.valueOf(dFormat.format(super.getComp()));
         String hoursInfo = String.valueOf(this.hoursWorked);
 
-        return (profileInfo + "::" + "Payment $" + paymentInfo + "::PART TIME::Houry Rate $" + wageInfo + "::Hours " +
+        return (profileInfo + "::" + "Payment " + paymentInfo + "::PART TIME::Houry Rate " + wageInfo + "::Hours " +
                 "worked this period: " + hoursInfo);
 
     }

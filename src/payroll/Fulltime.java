@@ -1,5 +1,7 @@
 package payroll;
 
+import java.text.DecimalFormat;
+
 /**
  * Extends the Employee class and includes specific data and operations to a full-time employee
  *
@@ -43,11 +45,13 @@ public class Fulltime extends Employee {
     @Override
     public String toString() {
 
-        String profileInfo = super.toString();
-        String paymentInfo = String.valueOf(super.getPayment());
-        String salaryInfo = String.valueOf(super.getComp());
+        DecimalFormat dFormat = new DecimalFormat("'$'0.00");
 
-        return (profileInfo + "::" + "Payment $" + paymentInfo + "::FULL TIME::Annual Salary $" + salaryInfo);
+        String profileInfo = super.toString();
+        String paymentInfo = String.valueOf(dFormat.format(super.getPayment()));
+        String salaryInfo = String.valueOf(dFormat.format(super.getComp()));
+
+        return (profileInfo + "::" + "Payment " + paymentInfo + "::FULL TIME::Annual Salary " + salaryInfo);
 
     }
 

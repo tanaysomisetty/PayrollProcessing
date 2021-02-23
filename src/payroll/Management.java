@@ -1,5 +1,7 @@
 package payroll;
 
+import java.text.DecimalFormat;
+
 /**
  * Extends the Full-time class and includes specific data and operations to a full-time employee with a management role.
  *
@@ -61,10 +63,21 @@ public class Management extends Fulltime{
      */
     @Override
     public String toString() {
-        String fulltimeInfo = super.toString();
-        String extraCompInfo = String.valueOf(this.extraComp);
 
-        return (fulltimeInfo + "::Manager Compensation $" + extraCompInfo);
+
+        String fulltimeInfo = super.toString();
+        DecimalFormat dFormat = new DecimalFormat("'$'0.00");
+        String extraCompInfo = String.valueOf(dFormat.format(this.extraComp));
+
+        if (managerCode == 1) { //Manager
+            return (fulltimeInfo + "::Manager Compensation " + extraCompInfo);
+        } else if (managerCode == 2) { //Department Head
+            return (fulltimeInfo + "::DepartmentHead Compensation " + extraCompInfo);
+        } else if (managerCode == 3) { //Director
+            return (fulltimeInfo + "::Director Compensation " + extraCompInfo);
+        }
+
+        return (fulltimeInfo + "::Manager Compensation " + extraCompInfo);
     }
 
     /**
