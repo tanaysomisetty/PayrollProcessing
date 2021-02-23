@@ -30,19 +30,27 @@ public class Date implements Comparable<Date> {
     public int compareTo(Date date) {
         if (this.year > date.year) {
             return 1;
-        } else if (this.year < date.year) {
+        }
+        else if (this.year < date.year) {
             return -1;
-        } else {
+        }
+        else {
             if (this.month > date.month) {
                 return 1;
-            } else if (this.month < date.month) {
+            }
+            else if (this.month < date.month) {
                 return -1;
-            } else {
+            }
+            else {
                 if (this.day > this.day) {
                     return 1;
-                } else if (this.day < this.day) {
+                }
+                else if (this.day < this.day) {
                     return -1;
-                } else return 0;
+                }
+                else {
+                    return 0;
+                }
             }
         }
     }

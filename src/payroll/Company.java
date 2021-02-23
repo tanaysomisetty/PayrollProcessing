@@ -30,12 +30,9 @@ public class Company {
      * @return emplist index if the employee is found, -1 otherwise.
      */
     private int find(Employee employee) {
-
-        if (emplist != null) {
-            for (int i = 0; i < numEmployee; i++ ) {
-                if (emplist[i].equals(employee)) {
-                    return i;
-                }
+        for (int i = 0; i < emplist.length && emplist[i] != null; i++ ) {
+            if (employee.equals(emplist[i])) {
+                return i;
             }
         }
         return -1;
@@ -92,7 +89,8 @@ public class Company {
             this.numEmployee--;
             shift(removeIndex + 1);
             return true;
-        } else {
+        }
+        else {
             return false;
         }
 
@@ -120,14 +118,14 @@ public class Company {
      */
     public boolean setHours(Employee employee) {
 
-        boolean isPartTime = false;
-
-        //if (employee)
         if (employee instanceof Parttime) {
-            isPartTime = true;
+            int setHoursIndex = find(employee);
+            int hours = ((Parttime) employee).getHoursWorked();
+            ((Parttime) emplist[setHoursIndex]).setHoursWorked(hours);
+            return true;
         }
 
-        return isPartTime;
+        return false;
     }
 
     /**

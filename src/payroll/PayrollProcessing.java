@@ -113,7 +113,6 @@ public class PayrollProcessing {
                     Date newDate = new Date(newDateHired);
                     Profile newProfile = new Profile(newName, newDept, newDate);
                     Employee newEM = new Employee(newProfile, 0);
-                    System.out.println(newEM.toString()); //DELETE;
 
                     int numEmployee = myCompany.getNumEmployee();
                     if (numEmployee == 0) {
