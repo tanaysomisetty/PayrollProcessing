@@ -28,6 +28,10 @@ public class CompanyTest {
 
     }
 
+    /**
+     Test case to test add for true. Add method should
+     add employee since the employee does not exist in list
+     */
     @Test
     public void testAddForTrue() {
 
@@ -39,6 +43,10 @@ public class CompanyTest {
 
     }
 
+    /**
+     Test case to test for false. Add method should not
+     add employee since the employee exists in list
+     */
     @Test
     public void testAddForFalse() {
         Date d1 = new Date("7/1/2020");
@@ -50,6 +58,11 @@ public class CompanyTest {
 
     }
 
+    /**
+     Test case to test for grow. Add method will call grow if
+     the employee list array exceeds initial capacity. Grow method
+     will automatically grow capacity of array by 4.
+     */
     @Test
     public void testAddAfterGrow() {
         Date d = new Date("7/1/2020");
@@ -75,6 +88,10 @@ public class CompanyTest {
 
     }
 
+    /**
+     Test case to test remove for true. Remove method should remove the
+     respective employee from list since employee is already added.
+     */
     @Test
     public void testRemoveTrue() {
         Date d1 = new Date("7/1/2020");
@@ -84,6 +101,10 @@ public class CompanyTest {
         Assert.assertTrue(removed);
     }
 
+    /**
+     Test case to test remove for false. Remove method should not work since
+     respective employee has not been added to list.
+     */
     @Test
     public void testRemoveFalse() {
         Date d1 = new Date("7/1/2020");
@@ -93,6 +114,9 @@ public class CompanyTest {
         Assert.assertFalse(removed);
     }
 
+    /**
+     Test case to test setHours for true. setHours method should
+     */
     @Test
     public void testSetHoursTrue() {
         Date d1 = new Date("7/1/2020");

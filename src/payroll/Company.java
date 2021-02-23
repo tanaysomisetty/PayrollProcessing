@@ -1,11 +1,10 @@
 package payroll;
 
 /**
- * An array-based container class that implements employee database.
- * Stores a list of employees, which may include instances of full-time,part-time,
- * and management.
- *
- * @author Sailokesh Mondi, Tanay Somisetty
+ An array-based container class that implements employee database.
+ Stores a list of employees, which may include instances of full-time,part-time,
+ and management.
+ @author Sailokesh Mondi, Tanay Somisetty
  */
 
 import java.util.Calendar;
@@ -25,21 +24,27 @@ public class Company {
         numEmployee = 0;
     }
 
+    /**
+     * Method to search for and find an employee in the list
+     * @param employee
+     * @return emplist index if the employee is found, -1 otherwise.
+     */
     private int find(Employee employee) {
 
-        int found = -1;
-
         if (emplist != null) {
-            for (final Employee currentEmployee : emplist) {
-                if (employee.equals(currentEmployee)) {
-                    found = 1;
-                    break;
+            for (int i = 0; i < numEmployee; i++ ) {
+                if (emplist[i].equals(employee)) {
+                    return i;
                 }
             }
         }
-        return found;
+        return -1;
     }
 
+    /**
+     Helper method to grow the capacity of employee array by 4
+     @param 'none'
+     */
     private void grow() {
 
         int currCapacity = this.emplist.length;
@@ -56,10 +61,9 @@ public class Company {
 
 
     /**
-     * Method to check the profile before adding.
-     *
-     * @param employee
-     * @return
+      Method to check the profile before adding
+      @param employee
+      @return true if the employee was able to be added, false otherwise
      */
     public boolean add(Employee employee) {
 
@@ -76,27 +80,28 @@ public class Company {
     }
 
     /**
-     * Method to maintain the original sequence.
-     *
-     * @param employee
-     * @return
+      Method to remove an employee from the list
+      @param employee
+      @return true if the employee was able to be removed, false otherwise
      */
     public boolean remove(Employee employee) {
+
         int removeIndex = find(employee);
         if (removeIndex >= 0) {
             emplist[removeIndex] = null;
+            this.numEmployee--;
             shift(removeIndex + 1);
             return true;
         } else {
             return false;
         }
 
+
     }
 
     /**
-     * Helper method to shift all items of an array begin at index start to the end of the array back by 1
-     *
-     * @param 'starting' index
+      Helper method to shift all items of an array begin at index start to the end of the array back by 1
+     @param 'starting' index
      */
     private void shift(int start) {
 
@@ -109,16 +114,15 @@ public class Company {
 
 
     /**
-     * Method to set working hours for a part-time employee.
-     *
-     * @param employee
-     * @return
+      Method to set working hours for a part-time employee
+      @param employee object
+      @return
      */
     public boolean setHours(Employee employee) {
 
         boolean isPartTime = false;
 
-
+        //if (employee)
         if (employee instanceof Parttime) {
             isPartTime = true;
         }
@@ -127,9 +131,8 @@ public class Company {
     }
 
     /**
-     * Method to process payments for all employees.
-     *
-     * @param 'none'
+     Method to process payments for all employees.
+     @param 'none'
      */
     public void processPayments() {
 
@@ -149,21 +152,23 @@ public class Company {
     }
 
     /**
-     * Method to print earning statements for all employees.
-     *
-     * @param 'none'
+     Method to print earning statements for all employees.
+     @param 'none'
      */
     public void print() {
-
+        if (numEmployee == 0) {
+            System.out.println("Employee database is empty");
+            return;
+        }
+        System.out.println("--Printing earning statements for all employees--");
         for (int i = 0; i < numEmployee; i++) {
             System.out.println(emplist[i].toString());
         }
     }
 
     /**
-     * Helper method to implement selection sort for two different purposes: sort by date hired and sort by department
-     *
-     * @param 'sorting' type/method
+     Helper method to implement selection sort for two different purposes: sort by date hired and sort by department
+     @param 'sorting' type/method
      */
     private void selectionSort(final int sortBy) {
         if (sortBy == SORT_BY_DATE) {
@@ -193,12 +198,14 @@ public class Company {
     }
 
     /**
-     * Method to print earning statements by department.
-     *
-     * @param 'none'
+     Method to print earning statements by department.
+     @param 'none'
      */
     public void printByDepartment() {
-
+        if (numEmployee == 0) {
+            System.out.println("Employee database is empty");
+            return;
+        }
 
         Employee[] cSDepArray = new Employee[emplist.length];
         Employee[] eCEDepArray = new Employee[emplist.length];
@@ -208,7 +215,9 @@ public class Company {
         int eceDepCount = 0;
         int itDepCount = 0;
 
-        for (int i = 0; i < emplist.length; i++) {
+        System.out.println("--Printing earning statements by department--");
+
+        for (int i = 0; i < numEmployee; i++) {
             String department = emplist[i].getProfile().getDepartment();
             if (DEPARTMENT_CS.equals(department)) {
                 cSDepArray[csDepCount] = emplist[i];
@@ -238,9 +247,8 @@ public class Company {
     }
 
     /**
-     * Method to print earning statements by date hired.
-     *
-     * @param 'none'
+     Method to print earning statements by date hired.
+     @param 'none'
      */
     public void printByDate() {
 
@@ -252,8 +260,11 @@ public class Company {
             for (int i = 0; i < numEmployee; i++) {
                 System.out.println(emplist[i].toString());
             }
-            System.out.println("**End of list");
         }
+    }
+
+    public int getNumEmployee() {
+        return this.numEmployee;
     }
 
 }

@@ -6,7 +6,7 @@ package payroll;
  * @author Sailokesh Mondi, Tanay Somisetty
  */
 
-public abstract class Employee {
+public class Employee {
     private Profile profile;
     private double comp; //Compensation for an Employee, can be the hourly pay rate or annual salary
     private double payment; //Current payment for an Employee after calculation
@@ -32,9 +32,11 @@ public abstract class Employee {
     }
 
     /**
-     * An abstract method to calculate the payment of an Employee object.
+     * A method to calculate the payment of an Employee object.
      */
-    public abstract void calculatePayment();
+    public void calculatePayment(){
+        return;
+    };
 
 
     /**

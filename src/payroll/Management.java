@@ -10,11 +10,20 @@ public class Management extends Fulltime{
     private int managerCode;
     private double extraComp;
 
+    /**
+     * The default constructor
+     */
     public Management() {
         this(null, 0, 0);
 
     }
 
+    /**
+     *
+     * @param profile
+     * @param comp
+     * @param managerCode
+     */
     public Management(Profile profile, double comp, int managerCode) {
         super(profile, comp);
         final double MANAGER_COMP = 5000;
@@ -34,7 +43,10 @@ public class Management extends Fulltime{
         }
     }
 
-
+    /**
+     Method to calculate payments for a management employee
+     @param 'none'
+     */
     @Override
     public void calculatePayment() {
         super.calculatePayment();
@@ -43,6 +55,10 @@ public class Management extends Fulltime{
 
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         String fulltimeInfo = super.toString();
@@ -51,9 +67,30 @@ public class Management extends Fulltime{
         return (fulltimeInfo + "::Manager Compensation $" + extraCompInfo);
     }
 
+    /**
+     Method that
+     @param obj
+     @return
+     */
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if (obj instanceof Management) {
+            Management management = (Management) obj;
+            Profile inProfile = management.getProfile();
+
+            Boolean nameCheck = inProfile.getName().equals(getProfile().getName());
+            Boolean deptCheck = inProfile.getDepartment().equals(getProfile().getDepartment());
+            int dateCheck = inProfile.getDateHired().compareTo(getProfile().getDateHired());
+
+            if (nameCheck && deptCheck && (dateCheck == 0)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
-}
+    }
+
