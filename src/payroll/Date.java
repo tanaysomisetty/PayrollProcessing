@@ -125,7 +125,7 @@ public class Date implements Comparable<Date> {
         }
 
         if ((month == Calendar.APRIL + 1 || month == Calendar.JUNE + 1 || month == Calendar.SEPTEMBER + 1
-                || month == Calendar.NOVEMBER + 1) && day > SHORT_MONTH) {
+             || month == Calendar.NOVEMBER + 1) && day > SHORT_MONTH) {
             return false;
         }
 

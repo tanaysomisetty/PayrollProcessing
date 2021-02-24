@@ -115,7 +115,8 @@ public class CompanyTest {
     }
 
     /**
-     Test case to test setHours for true. setHours method should
+     Test case to test setHours for true. setHours method should set the specified hours
+     for a part-time employee.
      */
     @Test
     public void testSetHoursTrue() {
