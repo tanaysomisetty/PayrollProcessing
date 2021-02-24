@@ -23,7 +23,7 @@ public class CompanyTest {
         company = new Company();
         Date d1 = new Date("7/1/2020");
         Profile p1 = new Profile("Doe,Jane", "CS", d1);
-        Employee e1 = new Parttime(p1, 0);
+        Parttime e1 = new Parttime(p1, 0);
         company.add(e1);
 
     }
@@ -121,9 +121,33 @@ public class CompanyTest {
     @Test
     public void testSetHoursTrue() {
         Date d1 = new Date("7/1/2020");
-        Profile p1 = new Profile("Doe, Jane", "CS", d1);
-        Employee e1 = new Parttime(p1, 0);
+        Profile p1 = new Profile("Doe1, Jane", "CS", d1);
+        Parttime e1 = new Parttime(p1, 0);
+        e1.setHoursWorked(10);
+        company.add(e1);
         boolean setHours = company.setHours(e1);
         Assert.assertTrue(setHours);
+    }
+
+    @Test
+    public void testSetHoursWhenNegativeHoursFalse() {
+        Date d1 = new Date("7/1/2020");
+        Profile p1 = new Profile("Doe2, Jane", "CS", d1);
+        Parttime e1 = new Parttime(p1, 0);
+        e1.setHoursWorked(-1);
+        company.add(e1);
+        boolean setHours = company.setHours(e1);
+        Assert.assertFalse(setHours);
+    }
+
+    @Test
+    public void testSetHoursWhenGreaterThan100False() {
+        Date d1 = new Date("7/1/2020");
+        Profile p1 = new Profile("Doe3, Jane", "CS", d1);
+        Parttime e1 = new Parttime(p1, 0);
+        e1.setHoursWorked(101);
+        company.add(e1);
+        boolean setHours = company.setHours(e1);
+        Assert.assertFalse(setHours);
     }
 }

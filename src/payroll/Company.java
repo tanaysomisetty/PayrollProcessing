@@ -124,8 +124,10 @@ public class Company {
                 return false;
             }
             int hours = ((Parttime) employee).getHoursWorked();
-            ((Parttime) emplist[setHoursIndex]).setHoursWorked(hours);
-            return true;
+            if(hours > 0 && hours <= 100) {
+                ((Parttime) emplist[setHoursIndex]).setHoursWorked(hours);
+                return true;
+            }
         }
 
         return false;
