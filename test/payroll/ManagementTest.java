@@ -15,7 +15,10 @@ public class ManagementTest {
     private static final double DIRECTOR_BONUS = 12000/26;
 
 
-
+    /**
+     Test case to test calculate method for a Department Head role. Method should
+     get the total compensation for Department Head.
+     */
     @Test
     public void testCalculatePaymentForManager() {
 
@@ -28,6 +31,11 @@ public class ManagementTest {
         double payment = management.getPayment();
         Assert.assertEquals((MANAGER_BONUS+100000/26), payment, 0.6);
     }
+
+    /**
+     Test case to test calculate method for a Department Head role. Method should
+     get the total compensation for Department Head.
+     */
     @Test
     public void testCalculatePaymentForDeptHead() {
         Date d1 = new Date("7/20/2020");
@@ -38,6 +46,11 @@ public class ManagementTest {
         double payment = management.getPayment();
         Assert.assertEquals((DEP_HEAD_BONUS+150000/26), payment, 1.0);
     }
+
+    /**
+     Test case to test calculate method for a Director role. Method should
+     get the total compensation for Director.
+     */
     @Test
     public void testCalculatePaymentForDirector() {
         Date d1 = new Date("7/20/2020");

@@ -3,24 +3,15 @@ package payroll;
 import java.text.DecimalFormat;
 
 /**
- * Extends the Employee class and includes specific data and operations to a full-time employee
- *
- * @author Sailokesh Mondi, Tanay Somisetty
+ Extends the Employee class and includes specific data and operations to a full-time employee
+ @author Sailokesh Mondi, Tanay Somisetty
  */
 
 public class Fulltime extends Employee {
 
     /**
-     Default constructor
-     */
-    public Fulltime() {
-        this(null, 0);
-    }
-
-    /**
-    Constructor that
-     @param profile
-     @param comp
+     Creates a Fulltime employee using the given profile and compensation
+     @param 'profile' object and compensation of type double
      */
     public Fulltime(Profile profile, double comp) {
         super(profile, comp);
@@ -39,8 +30,9 @@ public class Fulltime extends Employee {
     }
 
     /**
-     *
-     * @return
+     Gives a string representation of a Fulltime object
+     @param 'none'
+     @return a string in the format Lname,Fname::DEPT::MM/DD/YYYY::Payment $0.00::FULL TIME::Annual Salary $0.00
      */
     @Override
     public String toString() {
@@ -56,9 +48,9 @@ public class Fulltime extends Employee {
     }
 
     /**
-     *
-     * @param obj
-     * @return
+     Checks to see whether two Fulltime objects are equal by comparing their profiles
+     @param 'An' Object obj
+     @return true if obj is a Fulltime object and is equal to this class's profile, false otherwise
      */
     @Override
     public boolean equals(Object obj) {

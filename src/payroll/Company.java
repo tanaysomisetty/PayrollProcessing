@@ -8,7 +8,6 @@ package payroll;
  */
 
 import java.util.Calendar;
-import java.util.*;
 
 public class Company {
     private Employee[] emplist;
@@ -26,9 +25,9 @@ public class Company {
     }
 
     /**
-     * Method to search for and find an employee in the list
-     * @param employee
-     * @return emplist index if the employee is found, -1 otherwise.
+     Method to search for and find an employee in the list
+     @param employee
+     @return emplist index if the employee is found, -1 otherwise.
      */
     private int find(Employee employee) {
         for (int i = 0; i < emplist.length && emplist[i] != null; i++ ) {

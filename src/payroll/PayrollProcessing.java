@@ -9,17 +9,17 @@ package payroll;
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
-import java.lang.NumberFormatException;
 import java.lang.ArrayIndexOutOfBoundsException;
 
 public class PayrollProcessing {
     private static Company myCompany = null;
 
+
+    /**
+     Handles all the commands related to payroll processing
+     @param 'none'
+     */
     public void run() {
-
-
-        /*WORKING HOURS: Make sure hours do not exceed 100 hours per pay period
-         */
 
         System.out.println("Payroll Processing starts.");
 
@@ -194,8 +194,14 @@ public class PayrollProcessing {
 
     }
 
-    private String testInput(String input, String option) {
 
+    /**
+     Tests input to determine whether input is of correct format.
+     Throws an exception of input is not of correct format.
+     @param 'input' String, and option String
+     @return input string if an exception is not thrown.
+     */
+    private String testInput(String input, String option) {
 
         if (option.equals("command")) {
             String cmdOptions = "AP AF AM R C S PA PH PD Q";

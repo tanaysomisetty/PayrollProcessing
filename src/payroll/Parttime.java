@@ -3,54 +3,48 @@ package payroll;
 import java.text.DecimalFormat;
 
 /**
- * This class extends the Employee class and includes specific data and operations for a part-time employee.
- *
- * @author Sailokesh Mondi, Tanay Somisetty
+ This class extends the Employee class and includes specific data and operations for a part-time employee.
+ @author Sailokesh Mondi, Tanay Somisetty
  */
 
 public class Parttime extends Employee {
     private int hoursWorked;
-    final static int Max_Hours = 80;
-
-    /**
-     The default constructor that sets the Profile instance variable to null.
-     @param 'none'
-     */
-    public Parttime() {
-        this(null, 0);
-    }
+    final static int MAX_HOURS = 80;
+    final static double OVERTIME_RATE = 1.5;
 
     /**
      Constructor that takes profile and compensation. Calls the constructor from the super class.
-     * @param profile of employee
-     * @param comp of employee
+     @param profile object for an employee, compensation as type double
      */
     public Parttime(Profile profile, double comp) {
         super(profile, comp);
     }
 
     /**
-     *
+     Calculates the payment for a part-time employee
+     @param 'none'
      */
     @Override
     public void calculatePayment() {
+
         int regHours = this.hoursWorked;
         int overTimeHours = 0;
 
-        if (regHours > 80) {
-            overTimeHours = regHours - 80;
-            regHours = 80;
+        if (regHours > MAX_HOURS) {
+            overTimeHours = regHours - MAX_HOURS;
+            regHours = MAX_HOURS;
         }
 
         double regPay = regHours * super.getComp();
-        double overTimePay = overTimeHours * (super.getComp() * 1.5);
+        double overTimePay = overTimeHours * (super.getComp() * OVERTIME_RATE);
 
         super.setPayment(regPay + overTimePay);
     }
 
     /**
-     *
-     * @return
+     Gives a string representation of a Parttime object
+     @param 'none'
+     @return a string in the format Lname,Fname::DEPT::MM/DD/YYYY::Payment $0.00::PART TIME::Hourly Rate $0.00: Hours worked this period: 0
      */
     @Override
     public String toString() {
@@ -62,15 +56,15 @@ public class Parttime extends Employee {
         String wageInfo = String.valueOf(dFormat.format(super.getComp()));
         String hoursInfo = String.valueOf(this.hoursWorked);
 
-        return (profileInfo + "::" + "Payment " + paymentInfo + "::PART TIME::Houry Rate " + wageInfo + "::Hours " +
+        return (profileInfo + "::" + "Payment " + paymentInfo + "::PART TIME::Hourly Rate " + wageInfo + "::Hours " +
                 "worked this period: " + hoursInfo);
 
     }
 
     /**
-     *
-     * @param obj
-     * @return
+     Checks to see whether two Parttime objects are equal by comparing their profiles
+     @param 'An' Object obj
+     @return true if obj is a Parttime object and is equal to this class's profile, false otherwise
      */
     @Override
     public boolean equals(Object obj) {
@@ -93,16 +87,20 @@ public class Parttime extends Employee {
     }
 
     /**
-     * Accessor method to get the hours worked
-     *
-     * @param 'none'
-     * @return an integer value that gets the hours worked for the employee
+     Accessor method to get the hours worked for a parttime employee
+     @param 'none'
+     @return an integer value that gets the hours worked for the employee
      */
     public int getHoursWorked() {
         return this.hoursWorked;
 
     }
 
+
+    /**
+     Modifer method to set the hours worked for a parttime employee
+     @param 'hours' worked of type int
+     */
     public void setHoursWorked(int hoursWorked) {
         this.hoursWorked = hoursWorked;
     }

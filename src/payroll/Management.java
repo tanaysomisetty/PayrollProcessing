@@ -3,9 +3,8 @@ package payroll;
 import java.text.DecimalFormat;
 
 /**
- * Extends the Full-time class and includes specific data and operations to a full-time employee with a management role.
- *
- * @author Sailokesh Mondi, Tanay Somisetty
+ Extends the Full-time class and includes specific data and operations to a full-time employee with a management role.
+ @author Sailokesh Mondi, Tanay Somisetty
  */
 
 public class Management extends Fulltime{
@@ -13,18 +12,8 @@ public class Management extends Fulltime{
     private double extraComp;
 
     /**
-     * The default constructor
-     */
-    public Management() {
-        this(null, 0, 0);
-
-    }
-
-    /**
-     *
-     * @param profile
-     * @param comp
-     * @param managerCode
+     Creates a management employee using the given profile and compensation
+     @param 'profile' object, compensation as type double, manager code as type int
      */
     public Management(Profile profile, double comp, int managerCode) {
         super(profile, comp);
@@ -58,8 +47,9 @@ public class Management extends Fulltime{
     }
 
     /**
-     *
-     * @return
+     Gives a string representation of a Management object
+     @param 'none'
+     @return a string in the format Lname,Fname::DEPT::MM/DD/YYYY::Payment $0.00::FULL TIME::Annual Salary $0.00::Manager Compensation $0.00
      */
     @Override
     public String toString() {
@@ -81,9 +71,9 @@ public class Management extends Fulltime{
     }
 
     /**
-     Method that
-     @param obj
-     @return
+     Checks to see whether two Management objects are equal by comparing their profiles
+     @param 'An' Object obj
+     @return true if obj is a Management object and is equal to this class's profile, false otherwise
      */
     @Override
     public boolean equals(Object obj) {
