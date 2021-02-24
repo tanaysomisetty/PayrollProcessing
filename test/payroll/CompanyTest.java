@@ -129,6 +129,10 @@ public class CompanyTest {
         Assert.assertTrue(setHours);
     }
 
+    /**
+     Test case to test setHours for true. setHours method should set the specified hours
+     for a part-time employee.
+     */
     @Test
     public void testSetHoursWhenNegativeHoursFalse() {
         Date d1 = new Date("7/1/2020");
