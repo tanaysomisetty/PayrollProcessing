@@ -37,7 +37,7 @@ public class Fulltime extends Employee {
     @Override
     public String toString() {
 
-        DecimalFormat dFormat = new DecimalFormat("'$'0.00");
+        DecimalFormat dFormat = new DecimalFormat("$###,###.##");
 
         String profileInfo = super.toString();
         String paymentInfo = String.valueOf(dFormat.format(super.getPayment()));

@@ -56,7 +56,7 @@ public class Management extends Fulltime{
 
 
         String fulltimeInfo = super.toString();
-        DecimalFormat dFormat = new DecimalFormat("'$'0.00");
+        DecimalFormat dFormat = new DecimalFormat("$###,###.##");
         String extraCompInfo = String.valueOf(dFormat.format(this.extraComp));
 
         if (managerCode == 1) { //Manager
